@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Force specific compatible versions — fixes 'proxies' TypeError
+RUN pip install --no-cache-dir \
+    "httpx==0.27.2" \
+    "anthropic==0.49.0" \
+    "python-telegram-bot==21.6"
+
+COPY bot.py .
+
+CMD ["python", "bot.py"]
